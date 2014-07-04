@@ -20,10 +20,16 @@ class coordinadoresArea
     return $coordinadores_area;
   }
 
-  function agregaCoordiandorArea($rol,$id_area)
+  function agregarCoordinadorArea($rol,$id_area)
   {
     include("conexion.php");
-    $query = "INSERT INTO coordinador_area(rol,id_area) VALUES('$rol','$id_area')";
+    echo "Rol:",$rol," ","Id Area:",$id_area;
+    $query = "INSERT INTO coordinador_area VALUES('".$rol."','".$id_area."')";
     $result = pg_query($query);
+
+    pg_free_result($result);
+
+    // Closing connection
+    pg_close($db);
   }
 }

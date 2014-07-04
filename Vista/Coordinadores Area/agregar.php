@@ -20,6 +20,9 @@
 <?php include("../../Modelo/carrera.php"); 
       $car = new carrera();
       $carreras = $car->obtenerCarreras();
+      include("../../Modelo/area.php");
+      $ar = new area();
+      $areas = $ar->obtenerAreas();
 ?>
 
 	<h1>Agregar Coordinador de Área</h1>
@@ -32,7 +35,17 @@
 		<label for="nombre">Rut:</label>
 			<input id="nombre" type="text" name="rut" placeholder="Rut" required="true" />
 		<label for="email">Área:</label>
-			<input id="email" type="text" name="area" placeholder="Área" required="true" />
+		<select name="area">
+		<option value="">Elige un área</option>
+		<?php 
+
+		    foreach($areas as $area) 
+		    { 
+		       echo '<option value="'. $area[0] .'">'. $area[1] .'</option>';
+		    }
+		?>
+		</select>
+
 		<label for="nombre">Teléfono:</label>
 			<input id="nombre" type="text" name="telefono" placeholder="Ej: +56988182965" required="true" />
 		<label for="email">Talla Polera:</label>

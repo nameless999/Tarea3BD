@@ -1,12 +1,22 @@
 <?php
 
+  	include("conexion.php");
 	include("../Modelo/alumno.php");
 	include("../Modelo/area.php");
+	include("../Modelo/coordinadoresArea.php"); 
+	
 	$al = new alumno();
-	$al->agregarAlumno($_POST[nombre],$_POST[rol],$_POST[rut],$_POST[telefono],$_POST[talla],$_POST[carrera],$_POST[correo],$_POST[contraseña]);
+	echo "string1";
+	$alumnos = $al->obtenerAlumnos();
+	foreach ($alumnos as $alumno)
+	{
+		if($_POST[rol] != $alumno[0] )
+		{
+			$al->agregarAlumno($_POST[nombre],$_POST[rol],$_POST[rut],$_POST[telefono],$_POST[talla],$_POST[carrera],$_POST[correo],$_POST[contraseña]);
+		}
 
-	/*$ar = new area();
-	$area = $ar->obtenerIDArea($_POST[area]);
-	$ar->agregaCoordinadorArea($_POST[rol],$area);
-	header("Location: ../Vista/Coordinadores Area/coordinadoresArea.php"); */
+	} 
+	$cor = new coordinadoresArea();
+	$cor->agregarCoordinadorArea($_POST[rol],$_POST[area]);
+ 
 ?>
